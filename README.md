@@ -7,7 +7,7 @@ Live:  https://squint-wordle.pages.dev/
 Build the website:
 
 ```sh
-npm run bundle
+npm run build
 ```
 
 And serve it:
