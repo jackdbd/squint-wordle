@@ -1,0 +1,28 @@
+{
+  "name": "squint-wordle",
+  "version": "0.0.1",
+  "description": "",
+  "browser": "public/app.js",
+  "keywords": [],
+  "author": "Giacomo Debidda <giacomo@giacomodebidda.com> (https://giacomodebidda.com/)",
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "npm run clean",
+    "build": "npm run build:js && npm run build:assets",
+    "build:js": "squint compile src/wordle.cljs && node bundle.cjs && rm src/wordle.mjs",
+    "build:assets": "cp assets/index.html public/index.html",
+    "clean": "rm -rf public",
+    "predeploy": "npm run build",
+    "deploy": "wrangler pages publish ./public",
+    "serve": "http-server public --port 8090",
+    "test": "true"
+  },
+  "devDependencies": {
+    "esbuild": "^0.15.13",
+    "fs-extra": "^10.1.0",
+    "http-server": "^14.1.1",
+    "jest": "^29.3.1",
+    "squint-cljs": "0.0.0-alpha.52",
+    "wrangler": "2.2.1"
+  }
+}

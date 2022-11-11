@@ -1,0 +1,17 @@
+# Clojure linter
+.clj-kondo/
+
+# language server protocol
+.lsp/
+
+# Portal REPL
+.portal/
+
+# environment variables
+.envrc
+
+# dependencies
+node_modules/
+
+# directory published to Cloudflare Pages
+public/

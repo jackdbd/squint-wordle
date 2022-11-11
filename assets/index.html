@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wordle!</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="description" content="Wordle game implemented in Clojure and compiled to JavaScript with the squint compiler.">
+    <!-- https://github.com/guybedford/es-module-shims -->
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.9/dist/es-module-shims.js"></script>
+    <!-- https://cdn.jsdelivr.net/npm/squint-cljs@0.0.0-alpha.52/ -->
+    <!-- <script type="importmap">
+      {
+        "imports": {
+          "squint-cljs": "/squint-cljs/index.js",
+          "squint-cljs/core.js": "/squint-cljs/core.js",
+          "squint-cljs/string.js": "/squint-cljs/string.js"
+        }
+      }
+    </script> -->
+    <!-- <script type="importmap">
+      {
+        "imports": {
+          "squint-cljs": "/squint-index.js",
+          "squint-cljs/core.js": "/squint-core.js",
+          "squint-cljs/string.js": "/squint-string.js"
+        }
+      }
+    </script> -->
+    <!-- <script type="importmap">
+      {
+        "imports": {
+          "squint-cljs": "https://cdn.jsdelivr.net/npm/squint-cljs@0.0.0-alpha.52/index.js",
+          "squint-cljs/core.js": "https://cdn.jsdelivr.net/npm/squint-cljs@0.0.0-alpha.52/core.js",
+          "squint-cljs/string.js": "https://cdn.jsdelivr.net/npm/squint-cljs@0.0.0-alpha.52/string.js"
+        }
+      }
+    </script> -->
+    <!-- load CSS asynchronously -->
+    <!-- https://www.filamentgroup.com/lab/load-css-simpler/ -->
+    <!-- <link rel="stylesheet" href="/app.css" media="print" onload="this.media='all'"> -->
+    <!-- <script type="module" src="wordle.mjs" defer></script> -->
+    <!-- load JS asynchronously -->
+    <script defer type="module" src="/app.js"></script>
+    <style type="text/css">
+      #app {
+        background-color: #121212;
+      }
+      #app .board {
+        background-color: rebeccapurple;
+        display: grid;
+        grid-template-columns: repeat(5, 60px);
+      }
+      #app .cell {
+        color: white;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+        font-size: 1.5rem;
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        border: 2px solid gray;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Wordle by <a href="https://github.com/oxalorg/wordle-clojurescript" rel="noopener noreferrer nofollow" target="_blank">@oxalorg</a>.
+      Play the game by typing letters and then hit return. The source code is taken from <a href="https://raw.githubusercontent.com/oxalorg/wordle-clojurescript/main/src/wordle/core2.cljs">here</a> and compiled using <a href="https://github.com/squint-cljs/squint" rel="noopener noreferrer nofollow" target="_blank">squint</a>.
+    </p>
+    <div id="app"></div>
+  </body>
+</html>

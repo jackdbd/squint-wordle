@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  audit-build:
+    name: 🔧 Audit dependencies and build website
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: ['16.18.1']
+    steps:
+      - name: 🛎️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🖥️ Setup Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - run: npm ci
+
+      - name: 🛡️ Audit security
+        continue-on-error: true
+        if: ${{ matrix.os }} == 'ubuntu-latest'
+        run: npm audit --audit-level=moderate
+
+      - name: 🔍 Run tests
+        run: npm run test
+
+      - name: 🔧 Build website
+        run: npm run build
+
+      # https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/#use-github-actions
+      # https://github.com/cloudflare/pages-action
+      - name: 🎉 Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: squint-wordle
+          directory: public
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
